@@ -150,7 +150,7 @@ var (
 	// ErrTdxTcbTooOld error returned when TDX TCB release date is before the minimum required date
 	ErrTdxTcbTooOld = errors.New("TDX TCB release date is before the minimum required date")
 	// ErrEnclaveTcbTooOld error returned when Enclave TCB release date is before the minimum required date
-	ErrEnclaveTcbTooOld = errors.New("Enclave TCB release date is before the minimum required date")
+	ErrEnclaveTcbTooOld = errors.New("enclave TCB release date is before the minimum required date")
 	// ErrCertNil error returned when certificate is not provided
 	ErrCertNil = errors.New("certificate is nil")
 	// ErrParentCertNil error returned when parent certificate is not provided
