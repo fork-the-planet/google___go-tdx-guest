@@ -1306,4 +1306,3 @@ func TestTcbStatusCheckOption(t *testing.T) {
 		t.Errorf("verifyQuote() with TcbStatusCheck=true got %v, want error containing %v", err, ErrTdxTcbStatus)
 	}
 }
-
