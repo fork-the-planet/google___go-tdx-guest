@@ -114,8 +114,7 @@ var (
 	getcollateral   = flag.String("get_collateral", "", "If true, then permitted to download necessary collaterals for additional checks.")
 	timeout         = flag.Duration("timeout", defaultTimeout, "Duration to continue to retry failed HTTP requests.")
 	maxRetryDelay   = flag.Duration("max_retry_delay", defaultMaxRetryDelay, "Maximum Duration to wait between HTTP request retries.")
-	tcbTTL          = flag.Duration("tcb_ttl", 0, "The maximum allowed age of the TCB at the time of verification.")
-	minTcbDateS     = flag.String("min_tcb_date", "", "The minimum required release date for the TCB in RFC3339 format (e.g. 2026-06-22T12:00:00Z).")
+	tcbStatusCheck  = flag.Bool("tcb_status_check", false, "If true, checks the TCB status reported by Intel PCS.")
 	testLocalGetter = flag.Bool("test_local_getter", false, "Use this flag only to test this CLI tool when network access is not available")
 
 	// Assign the values of the flags to the corresponding proto fields
@@ -436,14 +435,7 @@ func main() {
 	if err != nil {
 		die(err)
 	}
-	sopts.TcbTTL = *tcbTTL
-	if *minTcbDateS != "" {
-		minTcbDate, err := time.Parse(time.RFC3339, *minTcbDateS)
-		if err != nil {
-			dieWith(fmt.Errorf("invalid -min_tcb_date format: %v", err), exitParse)
-		}
-		sopts.MinTcbDate = minTcbDate
-	}
+	sopts.TcbStatusCheck = *tcbStatusCheck
 	logger.V(1).Info("Input parameters parsed successfully")
 
 	var getter trust.HTTPSGetter

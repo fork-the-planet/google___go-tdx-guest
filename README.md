@@ -90,7 +90,7 @@ verify.TdxQuote(myAttestation, verify.Options())
 
 #### `Options` type
 
-This type contains seven fields:
+This type contains six fields:
 
 *   `GetCollateral bool`: if true, then `TdxQuote` will download the collateral
     from Intel PCS API service and check against collateral obtained.
@@ -107,11 +107,8 @@ This type contains seven fields:
 *   `TrustedRoots *x509.CertPool`: if `nil`, uses the library's embedded
     certificate.
     Certificate chain verification is performed using trusted roots.
-*   `MinTcbDate time.Time`: if set, TCB levels with a release date before this
-    will be rejected. If unset (zero time), TCB date verification is skipped.
-*   `TcbTTL time.Duration`: if set, TCB levels with a release date older than
-    Now minus TcbTTL will be rejected. If unset (zero duration), TCB age verification
-    is skipped.
+*   `TcbStatusCheck bool`: if true, then `TdxQuote` will check the TCB status
+    reported by Intel PCS. If false (default), TCB status checks are skipped.
 
 ## `rtmr`
 
